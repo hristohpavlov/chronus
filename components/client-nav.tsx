@@ -49,10 +49,10 @@ const routes = [
     <>
     <div className="border-b fixed top-0 w-full bg-white z-10">
         <div className="flex h-16 items-center px-4">
-                <div className="lg:mr-4">
+                <div className="lg:-mr-4 w-20">
                 <Link href="/">
                         <Image
-                        className="h-10 w-20" 
+                        className="h-10 w-10" 
                         src={logo}
                         alt="Logo"
                         />
