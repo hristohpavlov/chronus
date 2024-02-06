@@ -52,7 +52,7 @@ const routes = [
                 <div className="lg:mr-4">
                 <Link href="/">
                         <Image
-                        className="h-8 w-8" 
+                        className="h-10 w-10" 
                         src={logo}
                         alt="Logo"
                         />
@@ -73,7 +73,7 @@ const routes = [
                         ))}
                     </nav>
                 </div>
-                <div className="hidden lg:block ml-auto items-center space-x-4">
+                <div className="ml-auto items-center space-x-4">
                     <UserButton afterSignOutUrl="/"/>
                 </div>
                 <div className="lg:hidden ml-auto">
@@ -86,7 +86,7 @@ const routes = [
                     )}
                 </SheetTrigger>
                 <SheetContent className="flex flex-col pt-10">
-                    {isOpen && <UserButton afterSignOutUrl="/"/>}
+                    
                     <nav className="flex flex-col items-center">
                         {routes.map((route) => (
                             <Link onClick={() => {
