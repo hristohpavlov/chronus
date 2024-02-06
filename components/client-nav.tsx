@@ -86,7 +86,7 @@ const routes = [
                     )}
                 </SheetTrigger>
                 <SheetContent className="flex flex-col pt-10">
-                    {/* {isOpen && <UserButton afterSignOutUrl="/"/>} */}
+                    {isOpen && <UserButton afterSignOutUrl="/"/>}
                     <nav className="flex flex-col items-center">
                         {routes.map((route) => (
                             <Link onClick={() => {
