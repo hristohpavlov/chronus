@@ -52,13 +52,13 @@ const routes = [
                 <div className="lg:mr-4">
                 <Link href="/">
                         <Image
-                        className="h-10 w-10" 
+                        className="h-10 w-20" 
                         src={logo}
                         alt="Logo"
                         />
                     </Link>
                 </div>
-                <div className="ml-auto lg:ml-0">
+                <div className="ml-auto mr-auto lg:ml-0">
                     <StoreSwitcher items={stores}/>
                 </div>
                 <div className="hidden lg:block">
@@ -73,10 +73,10 @@ const routes = [
                         ))}
                     </nav>
                 </div>
-                <div className="ml-auto items-center space-x-4">
+                <div className="mr-4 items-center space-x-4">
                     <UserButton afterSignOutUrl="/"/>
                 </div>
-                <div className="lg:hidden ml-auto">
+                <div className="lg:hidden">
                 <Sheet open={isOpen} onOpenChange={isOpen ? closeMenu : openMenu}>
                 <SheetTrigger>
                     {isOpen ? (
