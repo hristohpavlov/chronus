@@ -30,6 +30,16 @@ const routes = [
         active: pathname === `/${params.storeId}/categories`
     },
     {
+        href: `/${params.storeId}/sizes`,
+        label: 'Sizes',
+        active: pathname === `/${params.storeId}/sizes`
+    },
+    {
+        href: `/${params.storeId}/colors`,
+        label: 'Colors',
+        active: pathname === `/${params.storeId}/colors`
+    },
+    {
         href: `/${params.storeId}/settings`,
         label: 'Settings',
         active: pathname === `/${params.storeId}/settings`
@@ -52,7 +62,7 @@ const routes = [
                 <div className="lg:-mr-4 w-20">
                 <Link href="/">
                         <Image
-                        className="h-10 w-10" 
+                        className="h-8 w-8" 
                         src={logo}
                         alt="Logo"
                         />
