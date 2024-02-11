@@ -74,7 +74,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
         <div  className="flex items-center justify-between">
             <Heading 
             title="Settings"
-            description="Manage store settings"/>
+            description="Manage general store settings"/>
             <Button disabled={loading} variant="destructive" size="icon" onClick={() => setOpen(true)}>
                 <Trash className="h-4 w-4" />
             </Button>
@@ -82,12 +82,21 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
         <Separator />
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-                <div className="grid grid-cols-2 gap-8">
+                <div className="md:grid md:grid-cols-2 gap-8">
                     <FormField control={form.control} name="name" render={({ field}) => (
                         <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
                                 <Input disabled={loading} placeholder="Store Name" {...field}/>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}/>
+                    <FormField name="email" render={({ field}) => (
+                        <FormItem>
+                            <FormLabel>Contact Us Email</FormLabel>
+                            <FormControl>
+                                <Input disabled={loading} placeholder="Contact Us Store Email" {...field}/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -98,6 +107,9 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
                 </Button>
             </form>
         </Form>
+        <Separator />
+        <Heading title="Theme" description="Manage the theme and set the colors of the store" />
+        {/* Make component for changing the theme for the store */}
         <Separator />
         <ApiAlert title="NEXT_PUBLIC_API_URL" description={`${origin}/api/${params.storeId}`} variant="public"/>
         </>
