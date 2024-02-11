@@ -23,6 +23,9 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading"
 import { AlertModal } from "@/components/modals/alert-modal"
+import { HexColorPicker } from "react-colorful"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import './colorpicker.css';
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -43,6 +46,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
   const title = initialData ? 'Edit color' : 'Create color';
   const description = initialData ? 'Edit a color.' : 'Add a new color';
@@ -53,7 +57,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
-      value: '',
+      value: '#111111',
     }
   });
 
@@ -137,7 +141,21 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                   <FormControl>
                     <div className="flex items-center gap-x-4">
                       <Input disabled={loading} placeholder="Color value" {...field} />
-                      <div className="bordr p-4 rounded-full" style={{ backgroundColor: field.value }}/>
+                      <Popover>
+                        <PopoverTrigger>
+                          <div className="border p-4 rounded-full" style={{ backgroundColor: field.value }} onClick={() => setColorPickerVisible(!colorPickerVisible)}/>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto">
+                          <div className="color-picker">
+                          <HexColorPicker
+                            color={field.value}
+                            onChange={(newColor) => {
+                              field.onChange({ target: { value: newColor } });
+                            }}
+                          />
+                          </div>
+                        </PopoverContent>
+                      </Popover>
                     </div>
                   </FormControl>
                   <FormMessage />
