@@ -40,6 +40,11 @@ const routes = [
         active: pathname === `/${params.storeId}/colors`
     },
     {
+        href: `/${params.storeId}/products`,
+        label: 'Products',
+        active: pathname === `/${params.storeId}/products`
+    },
+    {
         href: `/${params.storeId}/settings`,
         label: 'Settings',
         active: pathname === `/${params.storeId}/settings`
@@ -57,7 +62,7 @@ const routes = [
 
   return (
     <>
-    <div className="border-b fixed top-0 w-full bg-white z-10">
+    <div className="border-b fixed top-0 w-full bg-white z-50">
         <div className="flex h-16 items-center px-4">
                 <div className="lg:-mr-4 w-20">
                 <Link href="/">

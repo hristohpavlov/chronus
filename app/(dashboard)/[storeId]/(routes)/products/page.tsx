@@ -1,37 +1,45 @@
 import prismadb from "@/lib/prismadb";
-import { CategoryClient } from "./components/client";
-import { CategoryColumn } from "./components/columns";
 import { format } from "date-fns";
+import { formatter } from "@/lib/utils";
+import { ProductColumn } from "./components/columns";
+import { ProductsClient } from "./components/client";
 
-const CategoriesPage = async({
+const ProductsPage = async({
     params
 }: {
     params: {storeId: string}
 }) => {
-    const categories = await prismadb.category.findMany({
+    const products = await prismadb.product.findMany({
         where: {
             storeId: params.storeId
         },
         include: {
-            billboard: true,
+            category:  true,
+            size: true,
+            color: true
         },
         orderBy: {
             createdAt: 'desc'
         }
     });
-    const formattedCategories: CategoryColumn[] = categories.map((item) => ({
+    const formattedProducts: ProductColumn[] = products.map((item) => ({
         id: item.id,
         name: item.name,
-        billboardLabel: item.billboard.label,
-        createdAt: format(item.createdAt, "MMMM do, yyyy")
+        isFeatured: item.isFeatured,
+        isArchived: item.isArchived,
+        price: formatter.format(item.price.toNumber()),
+        category: item.category.name,
+        size: item.size.name,
+        color: item.color.value,
+        createdAt: format(item.createdAt, 'MMMM do, yyyy'),
     }))
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <CategoryClient data={formattedCategories}/>
+                <ProductsClient data={formattedProducts}/>
             </div>
         </div>
     )
 }
 
-export default CategoriesPage;
+export default ProductsPage;
