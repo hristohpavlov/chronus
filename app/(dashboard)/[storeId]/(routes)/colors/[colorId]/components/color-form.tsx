@@ -57,9 +57,14 @@ export const ColorForm: React.FC<ColorFormProps> = ({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
-      value: '#111111',
-    }
+      value: '#ffffff',
+    },
+    shouldUnregister: false,
   });
+
+  if (!form.watch().value.startsWith('#')) {
+    form.setValue('value', '#' + form.watch().value);
+  }
 
   const onSubmit = async (data: ColorFormValues) => {
     try {
@@ -140,7 +145,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                   <FormLabel>Value</FormLabel>
                   <FormControl>
                     <div className="flex items-center gap-x-4">
-                      <Input disabled={loading} placeholder="Color value" {...field} />
+                      <Input disabled={loading} placeholder="Color value" {...field} maxLength={7}/>
                       <Popover>
                         <PopoverTrigger>
                           <div className="border p-4 rounded-full" style={{ backgroundColor: field.value }} onClick={() => setColorPickerVisible(!colorPickerVisible)}/>

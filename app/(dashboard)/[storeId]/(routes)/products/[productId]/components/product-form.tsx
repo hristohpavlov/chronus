@@ -246,7 +246,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     </FormControl>
                     <SelectContent>
                       {colors.map((color) => (
-                        <SelectItem key={color.id} value={color.id}>{color.name}</SelectItem>
+                        <SelectItem key={color.id} value={color.id}>
+                          <div className="flex items-center gap-x-2">
+                            <div className="border h-6 w-6 rounded-full" style={{ backgroundColor: color.name }} />
+                            {color.name}
+                          </div>
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
