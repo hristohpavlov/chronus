@@ -9,6 +9,7 @@ import StoreSwitcher from "@/components/store-switcher";
 import logo from "@/app/favicon.svg"
 import { usePathname, useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function NavigationMenuComponent({ stores }: any) {
 const pathname = usePathname();
@@ -67,9 +68,9 @@ const routes = [
 
   return (
     <>
-    <div className="border-b fixed top-0 w-full bg-white z-50">
+    <div className="border-b fixed top-0 w-full z-50">
         <div className="flex h-16 items-center px-4">
-                <div className="lg:-mr-4 w-20">
+                <div className="-mr-10 w-20">
                 <Link href="/">
                         <Image
                         className="h-8 w-8" 
@@ -78,6 +79,7 @@ const routes = [
                         />
                     </Link>
                 </div>
+                <ThemeToggle />
                 <div className="ml-auto mr-auto lg:ml-0">
                     <StoreSwitcher items={stores}/>
                 </div>
