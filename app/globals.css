@@ -79,3 +79,21 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+body::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar
+{
+    width: 7px;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb
+{
+    border-radius: 5px;
+    background-color: hsl(var(--foreground));
+}

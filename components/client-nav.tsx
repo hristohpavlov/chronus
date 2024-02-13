@@ -68,7 +68,7 @@ const routes = [
 
   return (
     <>
-    <div className="border-b fixed top-0 w-full z-50">
+    <div className="border-b fixed top-0 w-full z-50" style={{backgroundColor: 'hsl(var(--background))'}}>
         <div className="flex h-16 items-center px-4">
                 <div className="-mr-10 w-20">
                 <Link href="/">
