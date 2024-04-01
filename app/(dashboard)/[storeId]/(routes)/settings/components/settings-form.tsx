@@ -111,6 +111,9 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
         <Heading title="Theme" description="Manage the theme and set the colors of the store" />
         {/* Make component for changing the theme for the store */}
         <Separator />
+        <Heading title="Header" description="Change the monogram logo in the header" />
+        {/* Make component for changing the monogram logo */}
+        <Separator />
         <ApiAlert title="NEXT_PUBLIC_API_URL" description={`${origin}/api/${params.storeId}`} variant="public"/>
         </>
     );
