@@ -19,7 +19,12 @@ export async function POST(
   { params }: { params: { storeId: string } }
 ) {
   const { productIds } = await req.json();
-
+  // 
+  // console.log(params.storeId)
+  // If storeId === aSn then link to fe should be aSn link and should be set here
+  // SAME FOR OTHERS
+  //
+  const frontEndStoreURL = process.env.FRONTEND_STORE_URL
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product ids are required", { status: 400 });
   }
@@ -70,8 +75,8 @@ export async function POST(
     phone_number_collection: {
       enabled: true,
     },
-    success_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
-    cancel_url: `${process.env.FRONTEND_STORE_URL}/cart?canceled=1`,
+    success_url: `${frontEndStoreURL}/cart?success=1`,
+    cancel_url: `${frontEndStoreURL}/cart?canceled=1`,
     metadata: {
       orderId: order.id
     },
