@@ -202,7 +202,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     </FormControl>
                     <SelectContent>
                       {categories.map((category) => (
-                        <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
+                        category.pageType === 'Product Page' && (
+                          <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
+                        )
                       ))}
                     </SelectContent>
                   </Select>
