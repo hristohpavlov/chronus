@@ -18,7 +18,6 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({
 }) => {
     const router = useRouter();
     const params = useParams();
-
     return (
         <>
             <div className="flex items-center justify-between">

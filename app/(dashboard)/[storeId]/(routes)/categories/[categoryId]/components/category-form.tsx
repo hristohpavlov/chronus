@@ -28,6 +28,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const formSchema = z.object({
   name: z.string().min(2),
   billboardId: z.string().min(1),
+  pageType: z.string().min(1),
 });
 
 type CategoryFormValues = z.infer<typeof formSchema>
@@ -57,6 +58,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     defaultValues: initialData || {
       name: '',
       billboardId: '',
+      pageType: '',
     }
   });
 
@@ -92,6 +94,8 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
       setOpen(false);
     }
   }
+
+  const categories = [{id:'1', name:'Product Page'},{id:'2', name:'Contact Page'},{id:'3', name:'About Page'}];
 
   return (
     <>
@@ -146,6 +150,53 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                     <SelectContent>
                       {billboards.map((billboard) => (
                         <SelectItem key={billboard.id} value={billboard.id}>{billboard.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="md:grid md:grid-cols-3 gap-8">
+          {/* <FormField
+              control={form.control}
+              name="isProductPage"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      // @ts-ignore
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      Product Category
+                    </FormLabel>
+                    <FormDescription>
+                      This will decide whether the category is a product page or a normal page
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            /> */}
+            <FormField
+              control={form.control}
+              name="pageType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category Type</FormLabel>
+                  <Select disabled={loading} onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue defaultValue={field.value} placeholder="Select category type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category.id} value={category.name}>{category.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
