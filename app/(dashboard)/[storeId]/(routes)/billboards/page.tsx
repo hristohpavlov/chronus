@@ -2,32 +2,36 @@ import prismadb from "@/lib/prismadb";
 import { BillboardClient } from "./components/client";
 import { BillboardColumn } from "./components/columns";
 import { format } from "date-fns";
+import { LandingForm } from "./components/landing-form";
 
-const BillboardsPage = async({
-    params
-}: {
-    params: {storeId: string}
-}) => {
-    const billboards = await prismadb.billboard.findMany({
-        where: {
-            storeId: params.storeId
-        },
-        orderBy: {
-            createdAt: 'desc'
-        }
-    });
-    const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
-        id: item.id,
-        label: item.label,
-        createdAt: format(item.createdAt, "MMMM do, yyyy")
-    }))
-    return (
-        <div className="flex-col">
-            <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardClient data={formattedBillboards}/>
-            </div>
-        </div>
-    )
-}
+const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
+  const billboards = await prismadb.billboard.findMany({
+    where: {
+      storeId: params.storeId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
+    id: item.id,
+    label: item.label,
+    createdAt: format(item.createdAt, "MMMM do, yyyy"),
+  }));
+  const landing = await prismadb.landing.findMany({
+    where: {
+      storeId: params.storeId,
+    },
+  });
+  return (
+    <div className="flex-col">
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <LandingForm initialData={landing[0]} />
+        {/* Make component for changing the words in the landign page component  */}
+        <BillboardClient data={formattedBillboards} />
+      </div>
+    </div>
+  );
+};
 
 export default BillboardsPage;

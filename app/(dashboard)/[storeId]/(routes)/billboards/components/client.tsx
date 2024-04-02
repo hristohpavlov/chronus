@@ -21,9 +21,6 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
 
     return (
         <>
-            <Heading title="Landing Page Billboard" description="Manage the billboard for the langind page of the store" />
-            {/* Make component for changing the words in the landign page component  */}
-            <Separator />
             <div className="flex items-center justify-between">
                 <Heading
                  title={`Billboards (${data.length})`}

@@ -23,6 +23,21 @@ export async function POST(req: Request,) {
             }
         });
 
+        const getStore = await prismadb.store.findFirst({
+            where: {
+                name: store.name
+            }
+        })
+
+        const landing = await prismadb.landing.create({
+            data: {
+                storeId: getStore!.id,
+                decodeTitle: 'Example',
+                mainTitle: 'Example',
+                secondTitle: 'Example',
+            }
+        });
+
         return NextResponse.json(store);
     } catch (error){
         console.log("[STORES_POST]", error);
