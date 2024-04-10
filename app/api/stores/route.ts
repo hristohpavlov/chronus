@@ -29,12 +29,25 @@ export async function POST(req: Request,) {
             }
         })
 
-        const landing = await prismadb.landing.create({
+        await prismadb.landing.create({
             data: {
                 storeId: getStore!.id,
                 decodeTitle: 'Example',
                 mainTitle: 'Example',
                 secondTitle: 'Example',
+            }
+        });
+
+        await prismadb.themeColors.create({
+            data: {
+                storeId: getStore!.id,
+                primaryColor: '#FFFFFF',
+                yoloColor: '#FFFFFF',
+                borderColor: '#FFFFFF',
+                inputColor: '#FFFFFF',
+                ringColor: '#FFFFFF',
+                backgroundColor: '#FFFFFF',
+                foregroundColor: '#FFFFFF',
             }
         });
 

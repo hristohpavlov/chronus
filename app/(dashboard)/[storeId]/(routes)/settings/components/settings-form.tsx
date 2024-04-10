@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useOrigin } from "@/hooks/use-origin";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Store } from "@prisma/client";
+import { Store, ThemeColors } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -17,9 +17,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
+import { ColorForm } from "./color-form";
+import prismadb from "@/lib/prismadb";
 
 interface SettingsFormProps {
     initialData: Store;
+    initialThemeData: ThemeColors;
 }
 
 const formSchema = z.object({
@@ -28,7 +31,7 @@ const formSchema = z.object({
 
 type SettingsFormValues = z.infer<typeof formSchema>;
 
-export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
+export const SettingsForm: React.FC<SettingsFormProps> = ({initialData, initialThemeData}) => {
     const params = useParams();
     const router = useRouter();
     const origin = useOrigin();
@@ -108,8 +111,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
             </form>
         </Form>
         <Separator />
-        <Heading title="Theme" description="Manage the theme and set the colors of the store" />
-        {/* Make component for changing the theme for the store */}
+        <ColorForm initialData={initialThemeData}/>
         <Separator />
         <Heading title="Header" description="Change the monogram logo in the header" />
         {/* Make component for changing the monogram logo */}

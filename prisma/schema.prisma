@@ -16,6 +16,7 @@ model  Store {
   name String
   userId String
   billboards Billboard[] @relation("StoreBillboard")
+  themeColors ThemeColors[] @relation("StoreThemeColors")
   landing Landing[] @relation("StoreLanding")
   categories Category[] @relation("StoreToCategory")
   sizes Size[] @relation("StoreToSize")
@@ -33,6 +34,23 @@ model Billboard {
   label String
   imageUrl String
   categories Category[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId])
+}
+
+model ThemeColors {
+  id String @id @default(uuid())
+  storeId String
+  store Store @relation("StoreThemeColors", fields:[storeId], references: [id])
+  primaryColor String
+  yoloColor String
+  borderColor String
+  inputColor String
+  ringColor String
+  backgroundColor String
+  foregroundColor String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
