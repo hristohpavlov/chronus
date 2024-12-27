@@ -1,10 +1,10 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 import ClientNav from "./client-nav";
 
 const Navbar = async () => {
-    const {userId} = auth();
+    const {userId} = await auth();
 
     if(!userId) {
         redirect("/sign-in");
