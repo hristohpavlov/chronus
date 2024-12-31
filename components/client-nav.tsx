@@ -95,7 +95,7 @@ const routes = [
                         ))}
                     </nav>
                 </div>
-                <div className="mr-2 mt-[0.35rem] items-center space-x-4">
+                <div className="mr-4 mt-[0.35rem] items-center space-x-4">
                     <UserButton/>
                 </div>
                 <div className="lg:hidden">
