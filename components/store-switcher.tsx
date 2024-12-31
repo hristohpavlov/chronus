@@ -38,7 +38,7 @@ export default function StoreSwitcher({className, items = []}: StoreSwitcherProp
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" role="combobox" aria-expanded={open} aria-label="Select a store"
-                className={cn("max-w-[190px] md:max-w-[300px] justify-between", className)}>
+                className={cn("max-w-[190px] md:max-w-[250px] justify-between", className)}>
                     <StoreIcon className="mr-2 h-4 w-4" />
                     {currentStore?.label}
                     <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
