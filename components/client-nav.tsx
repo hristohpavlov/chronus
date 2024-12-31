@@ -95,7 +95,7 @@ const routes = [
                         ))}
                     </nav>
                 </div>
-                <div className="mr-4 items-center space-x-4">
+                <div className="mr-2 mt-1 items-center space-x-4">
                     <UserButton afterSignOutUrl="/"/>
                 </div>
                 <div className="lg:hidden">
