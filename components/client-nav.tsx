@@ -98,7 +98,7 @@ const routes = [
                 <div className="justify-center m-auto ml-2 mt-5 mr-4 md:mr-6 items-center space-x-4">
                     <UserButton/>
                 </div>
-                <div className="lg:hidden mt-2">
+                <div className="lg:hidden mt-2 mr-2">
                 <Sheet open={isOpen} onOpenChange={isOpen ? closeMenu : openMenu}>
                 <SheetTrigger>
                     {isOpen ? (
